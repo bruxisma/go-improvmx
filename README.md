@@ -1,5 +1,8 @@
 # Overview
 
+[![Go Reference][badge-svg]][badge-link]
+[![Build and Tests][build-svg]][build-link]
+
 `go-improvmx` is a golang wrapper around the [ImprovMX][1] [API][2]. It was
 written primarily for a [terraform][3] provider, however others might get use
 out of it.
@@ -35,3 +38,9 @@ The following libraries are used for *testing only*
 [2]: https://improvmx.com/api/
 [3]: https://www.terraform.io/
 [4]: https://github.com/go-task/task
+
+[build-svg]: https://github.com/slurps-mad-rips/go-improvmx/actions/workflows/build.yml/badge.svg
+[badge-svg]: https://pkg.go.dev/badge/occult.work/improvmx.svg
+
+[build-link]: https://github.com/slurps-mad-rips/go-improvmx/actions/workflows/build.yml
+[badge-link]: https://pkg.go.dev/occult.work/improvmx

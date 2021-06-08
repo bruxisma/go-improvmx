@@ -47,10 +47,9 @@ jobs:
           go test -v .
           -coverprofile coverage.out
           -cover ${{github.workspace}}
-#      - name: Upload Code Coverage
-#        uses: codecov/codecov-action@v1
-#        with:
-#          fail_ci_if_error: true
-#          directory: ${{ github.workspace }}
-#          files: coverage.out
-#          # token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload Code Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+          directory: ${{ github.workspace }}
+          files: coverage.out
