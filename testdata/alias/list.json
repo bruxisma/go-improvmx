@@ -1,0 +1,33 @@
+{
+  "aliases": [
+    {
+      "forward": "richard.hendricks@example.com",
+      "alias": "richard",
+      "id": 4
+    },
+    {
+      "forward": "jared.dunn@example.com",
+      "alias": "jared",
+      "id": 5
+    },
+    {
+      "forward": "monica.hall@example.com",
+      "alias": "monica",
+      "id": 6
+    },
+    {
+      "forward": "dinesh.chugtai@example.com",
+      "alias": "dinesh",
+      "id": 7
+    },
+    {
+      "forward": "bertram.gilfoyle@example.com",
+      "alias": "bertram",
+      "id": 8
+    }
+  ],
+  "limit": 5,
+  "page": 1,
+  "total": 6,
+  "success": true
+}

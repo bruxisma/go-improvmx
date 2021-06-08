@@ -1,0 +1,86 @@
+{
+    "domains": [
+        {
+            "active": true, 
+            "domain": "google.com",
+            "display": "google.com",
+            "dkim_selector": "dkimprovmx",
+            "notification_email": null,
+            "whitelabel": null,
+            "added": 1559639697000,
+            "aliases": [
+                {
+                    "forward": "sergey@example.com", 
+                    "alias": "sergey", 
+                    "id": 1
+                },
+                {
+                    "forward": "larry@example.com", 
+                    "alias": "larry", 
+                    "id": 2
+                }
+            ]
+        }, 
+        {
+            "active": true, 
+            "domain": "facebook.com",
+            "display": "facebook.com",
+            "dkim_selector": "dkimprovmx",
+            "notification_email": null,
+            "whitelabel": null,
+            "added": 1559639727000,
+            "aliases": [
+                {
+                    "forward": "mark@facebook-mail.com", 
+                    "alias": "*", 
+                    "id": 3
+                }
+            ]
+        }, 
+        {
+            "active": false, 
+            "domain": "piedpiper.com",
+            "display": "piedpiper.com",
+            "dkim_selector": "dkimprovmx",
+            "notification_email": null,
+            "whitelabel": null,
+            "added": 1559639733000,
+            "aliases": [
+                {
+                    "forward": "richard.hendricks@example.com", 
+                    "alias": "richard", 
+                    "id": 4
+                },
+                {
+                    "forward": "jared.dunn@example.com", 
+                    "alias": "jared", 
+                    "id": 5
+                },
+                {
+                    "forward": "monica.hall@example.com", 
+                    "alias": "monica", 
+                    "id": 6
+                },
+                {
+                    "forward": "dinesh.chugtai@example.com", 
+                    "alias": "dinesh", 
+                    "id": 7
+                },
+                {
+                    "forward": "bertram.gilfoyle@example.com", 
+                    "alias": "bertram", 
+                    "id": 8
+                },
+                {
+                    "forward": "nelson.bighetti@example.com", 
+                    "alias": "nelson", 
+                    "id": 9
+                }
+            ]
+        }
+    ], 
+    "total": 3,
+    "limit": 50,
+    "page": 1,
+    "success": true
+}

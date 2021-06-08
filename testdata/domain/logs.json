@@ -1,0 +1,115 @@
+{
+  "logs": [
+    {
+      "created": "2020-01-25 12:19:09+0000",
+      "created_raw": "Sat, 25 Jan 2020 12:19:09 GMT",
+      "events": [
+        {
+          "code": 250,
+          "created": "2020-01-25 12:19:11+0000",
+          "id": "some_random_id",
+          "local": "mxb.infra.improvmx.com",
+          "message": "Queued",
+          "server": "mail-io1-f54.google.com",
+          "status": "QUEUED"
+        },
+        {
+          "code": 250,
+          "created": "2020-01-25 12:19:12+0000",
+          "id": "some_random_id",
+          "local": "gmail-smtp-in.l.google.com",
+          "message": "Sent.",
+          "server": "mail16.mxc.infra.improvmx.com",
+          "status": "DELIVERED"
+        }
+      ],
+      "forward": {
+        "email": "richard.hendricks@gmail.com",
+        "name": "Richard Hendricks"
+      },
+      "hostname": "mail-io1-f54.google.com",
+      "id": "20201002014128.5ea8ee59fa894aa7a9141e9665985b46",
+      "messageId": "some_random_id",
+      "recipient": {
+        "email": "richard@piedpiper.com",
+        "name": "Richard Hendricks"
+      },
+      "sender": {
+        "email": "gavin@hooli.com",
+        "name": "Gavin Belsonx"
+      },
+      "subject": "You are screwed, Piedpiper team!",
+      "transport": "smtp"
+    },
+    {
+      "created": "2020-01-25 12:18:46+0000",
+      "created_raw": "Sat, 25 Jan 2020 12:18:46 GMT",
+      "events": [
+        {
+          "code": 250,
+          "created": "2020-01-25 12:18:47+0000",
+          "id": "another_random_id",
+          "local": "mxb.infra.improvmx.com",
+          "message": "Queued",
+          "server": "mail-pj1-f54.google.com",
+          "status": "QUEUED"
+        },
+        {
+          "code": 250,
+          "created": "2020-01-25 12:18:47+0000",
+          "id": "another_random_id",
+          "local": "gmail-smtp-in.l.google.com",
+          "message": "Sent.",
+          "server": "mail15.mxb.infra.improvmx.com",
+          "status": "DELIVERED"
+        }
+      ],
+      "forward": {
+        "email": "monica.hall@gmail.com",
+        "name": "Monica Hall"
+      },
+      "hostname": "mail-pj1-f54.google.com",
+      "messageId": "another_random_id",
+      "recipient": {
+        "email": "monica@piedpiper.com",
+        "name": "Monica Hall"
+      },
+      "sender": {
+        "email": "russ@threecommas.com",
+        "name": "Russ Hanneman"
+      },
+      "subject": "Series A, bitches!",
+      "transport": "smtp"
+    },
+    {
+      "created": "2020-01-25 11:30:41+0000",
+      "created_raw": "Sat, 25 Jan 2020 11:30:41 GMT",
+      "events": [
+        {
+          "code": 550,
+          "created": "2020-01-25 11:30:42+0000",
+          "id": "yet_another_random_id",
+          "local": "mxa.infra.improvmx.com",
+          "message": "5.7.1 Message considered as SPAM (Score of 5.8/5.0 with BAYES_20, DKIM_SIGNED, DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE, HTML_TAG_BALANCE_BODY, MIME_HEADER_CTYPE_ONLY, NO_RELAYS, URIBL_ABUSE_SURBL, URIBL_DBL_ABUSE_SPAM, URIBL_DBL_SPAM)",
+          "server": "mail-wm1-f67.google.com",
+          "status": "REFUSED"
+        }
+      ],
+      "forward": null,
+      "hostname": "mail-wm1-f67.google.com",
+      "id": "20201002014128.7ea8ee59fa894aa7a91415a6659c5b46",
+      "messageId": "yet_another_random_id",
+      "recipient": {
+        "email": "richard@piedpiper.com",
+        "name": null
+      },
+      "sender": {
+        "email": "spam@hooli.com",
+        "name": "ThinkTeam"
+      },
+      "subject": "Enlarge your (pied)piper!",
+      "transport": "smtp"
+    }
+  ],
+  "success": true
+}

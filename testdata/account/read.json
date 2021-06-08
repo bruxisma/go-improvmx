@@ -1,0 +1,40 @@
+{
+    "account": {
+        "billing_email": null,
+        "cancels_on": null,
+        "card_brand": "Visa",
+        "company_details": "1 Decentralized Street\n92024-2852 California",
+        "company_name": "PiedPiper Inc.",
+        "company_vat": null,
+        "country": "US",
+        "created": 1512139382000,
+        "email": "richard.hendricks@example.com",
+        "last4": "1234",
+        "limits": {
+            "aliases": 10000,
+            "daily_quota": 100000,
+            "domains": 10000,
+            "ratelimit": 10,
+            "redirections": 50,
+            "subdomains": 2
+        },
+        "lock_reason": null,
+        "locked": null,
+        "password": true,
+        "plan": {
+            "aliases_limit": 10000,
+            "daily_quota": 100000,
+            "display": "Business - $249",
+            "domains_limit": 10000,
+            "kind": "enterprise",
+            "name": "enterprise249",
+            "price": 249,
+            "yearly": false
+        },
+        "premium": true,
+        "privacy_level": 1,
+        "renew_date": 15881622590000
+    },
+    "success": true
+}
+
