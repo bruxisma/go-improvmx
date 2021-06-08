@@ -40,7 +40,7 @@ Unlike the ImprovMX REST API, however, the golang API has organized these
 endpoints into Domain, Aliases, Account, and Credentials. Every operation
 within these endpoints attempts to follow the CRUD (Create, Read, Update,
 Delete) naming convention. There are some outliers, such as
-Account.Whitelabels, or Domain.Verify. Additionally, logs are grouped with
+Account.Labels, or Domain.Verify. Additionally, logs are grouped with
 their specific endpoints. Users are also able to List some resources:
 
 	domains, error := session.Domains.List()
