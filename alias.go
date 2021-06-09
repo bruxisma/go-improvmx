@@ -18,21 +18,34 @@ type Alias struct {
 	ID      int64  `json:"id"`
 }
 
-type AliasFilterOptions struct {
-	startsWith string
-	active     bool
-	page       int
-}
-
-// Returns a slice of Alias for the given domain
+// Returns a slice of Alias for the given domain.
+//
+// If multiple *ListOption are passed, only the first one is used.
 //
 // See the API reference for more information: https://improvmx.com/api/#alias-list
 func (endpoint *AliasEndpoint) List(ctx context.Context, domain string, options ...*ListOption) ([]Alias, error) {
 	request := endpoint.inner().Request(ctx, &aliasesResponse{}).
 		SetPathParameter("domain", domain)
 
+	option := getListOption(options...)
+	if error := option.validate(); error != nil {
+		return nil, error
+	}
+
 	var aliases []Alias
 	page := 1
+
+	if option.page != nil {
+		page = *option.page
+	}
+
+	if option.startsWith != "" {
+		request.SetQueryParameter("q", option.startsWith)
+	}
+
+	if option.isActive != nil {
+		request.SetQueryParameter("is_active", strconv.Itoa(*option.isActive))
+	}
 
 	for {
 		request.SetQueryParameter("page", strconv.Itoa(page))

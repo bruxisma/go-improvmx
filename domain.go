@@ -31,12 +31,35 @@ type DomainOption struct {
 
 // Returns a slice of domain information for the session
 //
+// If multiple *ListOption are passed, only the first one is used.
+//
 // See the API reference for more information: https://improvmx.com/api/#domains-list
-func (endpoint *DomainEndpoint) List(ctx context.Context) ([]Domain, error) {
+func (endpoint *DomainEndpoint) List(ctx context.Context, options ...*ListOption) ([]Domain, error) {
 	request := endpoint.inner().Request(ctx, &domainsResponse{})
+
+	option := getListOption(options...)
+	if error := option.validate(); error != nil {
+		return nil, error
+	}
 
 	var domains []Domain
 	page := 1
+
+	if option.page != nil {
+		page = *option.page
+	}
+
+	if option.startsWith != "" {
+		request.SetQueryParameter("q", option.startsWith)
+	}
+
+	if option.isActive != nil {
+		request.SetQueryParameter("is_active", strconv.Itoa(*option.isActive))
+	}
+
+	if option.limit != nil {
+		request.SetQueryParameter("limit", strconv.Itoa(*option.limit))
+	}
 
 	for {
 		request.SetQueryParameter("page", strconv.Itoa(page))

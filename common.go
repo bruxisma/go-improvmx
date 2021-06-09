@@ -221,11 +221,11 @@ func (option *ListOption) validate() error {
 	return nil
 }
 
-func getListOption(options ...ListOption) *ListOption {
+func getListOption(options ...*ListOption) *ListOption {
 	if len(options) == 0 {
-		return nil
+		return &ListOption{}
 	}
-	return &options[0]
+	return options[0]
 }
 
 func (e *Error) Error() string {
