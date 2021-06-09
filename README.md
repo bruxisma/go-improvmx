@@ -40,7 +40,7 @@ The following libraries are used for *testing only*
 [3]: https://www.terraform.io/
 [4]: https://github.com/go-task/task
 
-[codecov-svg]: https://codecov.io/gh/slurps-mad-rips/go-improvmx/branch/master/graph/badge.svg?token=4ngB0iw6qf
+[codecov-svg]: https://codecov.io/gh/slurps-mad-rips/go-improvmx/branch/main/graph/badge.svg?token=4ngB0iw6qf
 [build-svg]: https://github.com/slurps-mad-rips/go-improvmx/actions/workflows/build.yml/badge.svg
 [badge-svg]: https://pkg.go.dev/badge/occult.work/improvmx.svg
 
