@@ -6,6 +6,13 @@ import (
 	"occult.work/improvmx/internal"
 )
 
+const (
+	credentialsListPath   = "/domains/{domain}/credentials/"
+	credentialsCreatePath = "/domains/{domain}/credentials/"
+	credentialsUpdatePath = "/domains/{domain}/credentials/{username}"
+	credentialsDeletePath = "/domains/{domain}/credentials/{username}"
+)
+
 type CredentialEndpoint internal.Client
 
 type Credential struct {

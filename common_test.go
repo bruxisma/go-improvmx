@@ -58,11 +58,6 @@ func (suite *CommonTestSuite) TestPaths() {
 	suite.Regexp(regex, aliasDeletePath)
 	suite.Regexp(regex, aliasLogsPath)
 
-	suite.Regexp(regex, credentialsListPath)
-	suite.Regexp(regex, credentialsCreatePath)
-	suite.Regexp(regex, credentialsUpdatePath)
-	suite.Regexp(regex, credentialsDeletePath)
-
 	suite.Regexp(regex, domainListPath)
 	suite.Regexp(regex, domainCreatePath)
 	suite.Regexp(regex, domainReadPath)

@@ -1,9 +1,14 @@
 package improvmx
 
 import (
+	"context"
 	_ "embed"
+	"fmt"
+	"net/http"
+	"regexp"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 	"occult.work/improvmx/internal"
 )
@@ -14,8 +19,25 @@ type CredentialTestSuite struct {
 }
 
 func (suite *CredentialTestSuite) SetupSuite() {
-	suite.Initialize(make(map[string][]byte))
-	suite.session, _ = New("credential-test-suite", WithHostURL(suite.Server.URL))
+	router := internal.NewRouter().
+		Delete(credentialsDeletePath, func(writer http.ResponseWriter, request *http.Request) {
+			suite.Require().Equal(request.URL.Path, "/domains/example.com/credentials/username")
+			fmt.Fprintf(writer, `{ "success": true }`)
+		})
+	suite.InitializeWithRouter(router)
+	suite.Data = &testData
+	suite.session = setupSession(suite.Server)
+}
+
+func TestCredentialPaths(t *testing.T) {
+	assert := assert.New(t)
+	fullpath := regexp.MustCompile("/$")
+	resource := regexp.MustCompile("[^/]$")
+
+	assert.Regexp(fullpath, credentialsListPath)
+	assert.Regexp(fullpath, credentialsCreatePath)
+	assert.Regexp(resource, credentialsUpdatePath)
+	assert.Regexp(resource, credentialsDeletePath)
 }
 
 func TestCredential(t *testing.T) {
@@ -35,5 +57,6 @@ func (suite *CredentialTestSuite) TestUpdate() {
 }
 
 func (suite *CredentialTestSuite) TestDelete() {
-	suite.Skip()
+	error := suite.session.Credentials.Delete(context.Background(), "example.com", "username")
+	suite.Require().NoError(error)
 }
