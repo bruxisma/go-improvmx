@@ -3,6 +3,8 @@ package improvmx
 import (
 	"context"
 	_ "embed"
+	"fmt"
+	"net/http"
 	"testing"
 
 	"github.com/stretchr/testify/suite"
@@ -19,7 +21,11 @@ func (suite *DomainTestSuite) SetupSuite() {
 		Get(domainVerifyPath, suite.FileResponseHandler("testdata/domain/verify.json")).
 		Get(domainListPath, suite.FileResponseHandler("testdata/domain/list.json")).
 		Get(domainLogsPath, suite.FileResponseHandler("testdata/domain/logs.json")).
-		Get(domainReadPath, suite.FileResponseHandler("testdata/domain/read.json"))
+		Get(domainReadPath, suite.FileResponseHandler("testdata/domain/read.json")).
+		Delete(domainDeletePath, func(writer http.ResponseWriter, request *http.Request) {
+			suite.Require().Equal(request.URL.Path, "/domains/example.com/")
+			fmt.Fprintf(writer, `{ "success": true }`)
+		})
 	suite.InitializeWithRouter(router)
 	suite.Data = &testData
 	suite.session = setupSession(suite.Server)
@@ -57,7 +63,8 @@ func (suite *DomainTestSuite) TestUpdate() {
 }
 
 func (suite *DomainTestSuite) TestDelete() {
-	suite.Skip()
+	error := suite.session.Domains.Delete(context.Background(), "example.com")
+	suite.Require().NoError(error)
 }
 
 func (suite *DomainTestSuite) TestVerify() {
