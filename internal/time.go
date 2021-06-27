@@ -23,3 +23,8 @@ func (t *Time) UnmarshalJSON(data []byte) (err error) {
 	*(*time.Time)(t) = time.Unix(value, 0)
 	return nil
 }
+
+// Returns the unix timestamp
+func (t *Time) Unix() int64 {
+	return ((*time.Time)(t)).Unix()
+}
