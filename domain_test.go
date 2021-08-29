@@ -7,17 +7,16 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/stretchr/testify/suite"
-	"occult.work/improvmx/internal"
+	"occult.work/doze/test"
 )
 
 type DomainTestSuite struct {
-	internal.Suite
+	test.Suite
 	session *Session
 }
 
 func (suite *DomainTestSuite) SetupSuite() {
-	router := internal.NewRouter().
+	router := test.NewRouter().
 		Get(domainVerifyPath, suite.FileResponseHandler("testdata/domain/verify.json")).
 		Get(domainListPath, suite.FileResponseHandler("testdata/domain/list.json")).
 		Get(domainLogsPath, suite.FileResponseHandler("testdata/domain/logs.json")).
@@ -26,13 +25,13 @@ func (suite *DomainTestSuite) SetupSuite() {
 			suite.Require().Equal(request.URL.Path, "/domains/example.com/")
 			fmt.Fprintf(writer, `{ "success": true }`)
 		})
-	suite.InitializeWithRouter(router)
+	suite.Initialize(router)
 	suite.Data = &testData
 	suite.session = setupSession(suite.Server)
 }
 
 func TestDomain(t *testing.T) {
-	suite.Run(t, new(DomainTestSuite))
+	test.Run(t, new(DomainTestSuite))
 }
 
 func (suite *DomainTestSuite) TestList() {

@@ -9,22 +9,21 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/suite"
-	"occult.work/improvmx/internal"
+	"occult.work/doze/test"
 )
 
 type CredentialTestSuite struct {
-	internal.Suite
+	test.Suite
 	session *Session
 }
 
 func (suite *CredentialTestSuite) SetupSuite() {
-	router := internal.NewRouter().
+	router := test.NewRouter().
 		Delete(credentialsDeletePath, func(writer http.ResponseWriter, request *http.Request) {
 			suite.Require().Equal(request.URL.Path, "/domains/example.com/credentials/username")
 			fmt.Fprintf(writer, `{ "success": true }`)
 		})
-	suite.InitializeWithRouter(router)
+	suite.Initialize(router)
 	suite.Data = &testData
 	suite.session = setupSession(suite.Server)
 }
@@ -41,7 +40,7 @@ func TestCredentialPaths(t *testing.T) {
 }
 
 func TestCredential(t *testing.T) {
-	suite.Run(t, new(CredentialTestSuite))
+	test.Run(t, new(CredentialTestSuite))
 }
 
 func (suite *CredentialTestSuite) TestList() {

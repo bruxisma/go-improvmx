@@ -5,27 +5,26 @@ import (
 	_ "embed"
 	"testing"
 
-	"github.com/stretchr/testify/suite"
-	"occult.work/improvmx/internal"
+	"occult.work/doze/test"
 )
 
 type AccountTestSuite struct {
-	internal.Suite
+	test.Suite
 	session *Session
 }
 
 func (suite *AccountTestSuite) SetupSuite() {
-	router := internal.NewRouter().
+	router := test.NewRouter().
 		Get(accountLabelsPath, suite.FileResponseHandler("testdata/account/labels.json")).
 		Get(accountReadPath, suite.FileResponseHandler("testdata/account/read.json"))
 
-	suite.InitializeWithRouter(router)
+	suite.Initialize(router)
 	suite.Data = &testData
-	suite.session, _ = New("account-test-suite", WithHostURL(suite.Server.URL))
+	suite.session, _ = New("account-test-suite", WithBaseURL(suite.Server.URL))
 }
 
 func TestAccount(t *testing.T) {
-	suite.Run(t, new(AccountTestSuite))
+	test.Run(t, new(AccountTestSuite))
 }
 
 func (suite *AccountTestSuite) TestRead() {

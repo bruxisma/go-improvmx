@@ -3,7 +3,7 @@ package improvmx
 import (
 	"context"
 
-	"occult.work/improvmx/internal"
+	"occult.work/doze"
 )
 
 const (
@@ -13,7 +13,7 @@ const (
 	credentialsDeletePath = "/domains/{domain}/credentials/{username}"
 )
 
-type CredentialEndpoint internal.Client
+type CredentialEndpoint doze.Client
 
 type Credential struct {
 	CreatedAt Time   `json:"created"`
@@ -90,6 +90,6 @@ func (endpoint *CredentialEndpoint) Delete(ctx context.Context, domain, username
 	return error
 }
 
-func (endpoint *CredentialEndpoint) inner() *internal.Client {
-	return (*internal.Client)(endpoint)
+func (endpoint *CredentialEndpoint) inner() *doze.Client {
+	return (*doze.Client)(endpoint)
 }
