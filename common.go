@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"occult.work/improvmx/internal"
+	"occult.work/doze"
 )
 
 const (
@@ -45,7 +45,7 @@ const (
 	domainLogsPath   = "/domains/{domain}/logs/"
 )
 
-type Time = internal.Time
+type Time = doze.Time
 type MessageStatus string
 
 type Contact struct {

@@ -4,12 +4,12 @@ import (
 	"context"
 	"strconv"
 
-	"occult.work/improvmx/internal"
+	"occult.work/doze"
 )
 
 // Used to interact with the email alias specific parts of the ImprovMX REST
 // API
-type AliasEndpoint internal.Client
+type AliasEndpoint doze.Client
 
 type Alias struct {
 	// The address the Alias will forward to
@@ -137,6 +137,6 @@ func (endpoint *AliasEndpoint) Delete(ctx context.Context, domain, alias string)
 	return nil
 }
 
-func (endpoint *AliasEndpoint) inner() *internal.Client {
-	return (*internal.Client)(endpoint)
+func (endpoint *AliasEndpoint) inner() *doze.Client {
+	return (*doze.Client)(endpoint)
 }

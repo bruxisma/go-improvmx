@@ -1,12 +1,9 @@
 package improvmx
 
 import (
-	"context"
 	"fmt"
-	"time"
 
-	"github.com/go-resty/resty/v2"
-	"occult.work/improvmx/internal"
+	"occult.work/doze"
 )
 
 const (
@@ -17,7 +14,7 @@ const (
 )
 
 type Session struct {
-	client      *resty.Client
+	client      *doze.Client
 	Credentials *CredentialEndpoint
 	Account     *AccountEndpoint
 	Domains     *DomainEndpoint
@@ -26,22 +23,12 @@ type Session struct {
 
 type SessionOption func(*Session) error
 
-func (session *Session) request(ctx context.Context, result interface{}) *internal.Request {
-	r := session.client.
-		NewRequest().
-		ForceContentType("application/json").
-		SetContext(ctx).
-		SetResult(result)
-	return (*internal.Request)(r)
-}
-
 func New(token string, options ...SessionOption) (*Session, error) {
 	session := &Session{}
-	session.client = resty.New().
-		SetTimeout(time.Duration(1 * time.Minute)).
+	session.client = doze.NewClient().
 		SetAuthToken(fmt.Sprintf("api:%s", token)).
 		SetAuthScheme("Basic").
-		SetHostURL(BaseURLv3).
+		SetBaseURL(BaseURLv3).
 		SetError(&Error{})
 	for _, option := range options {
 		if error := option(session); error != nil {
@@ -57,11 +44,11 @@ func New(token string, options ...SessionOption) (*Session, error) {
 
 // Sets the session client directly. This is provided for extreme user needs.
 // However, the resty.Client.SetError type is still set to Error, and the host
-// url is set toe BaseURLv3. Use WithHostURL after calling WithClient if
+// url is set toe BaseURLv3. Use WithBaseURL after calling WithClient if
 // overriding the Host URL is required.
-func WithClient(client *resty.Client) SessionOption {
+func WithClient(client *doze.Client) SessionOption {
 	return func(session *Session) error {
-		client.SetError(&Error{}).SetHostURL(BaseURLv3)
+		client.SetError(&Error{}).SetBaseURL(BaseURLv3)
 		session.client = client
 		return nil
 	}
@@ -71,16 +58,16 @@ func WithClient(client *resty.Client) SessionOption {
 // unset.
 func WithUserAgent(agent string) SessionOption {
 	return func(session *Session) error {
-		session.client.SetHeader("User-Agent", agent)
+		session.client.SetUserAgent(agent)
 		return nil
 	}
 }
 
 // Sets the Base URL to query. This is typically BaseURLv3, however for both
 // testing and possible future sandboxing support, this option is provided.
-func WithHostURL(url string) SessionOption {
+func WithBaseURL(url string) SessionOption {
 	return func(session *Session) error {
-		session.client.SetHostURL(url)
+		session.client.SetBaseURL(url)
 		return nil
 	}
 }
@@ -88,7 +75,7 @@ func WithHostURL(url string) SessionOption {
 // Enables the debug mode on the Session's internal http client
 func WithDebug() SessionOption {
 	return func(session *Session) error {
-		session.client.SetDebug(true)
+		session.client.SetDebug()
 		return nil
 	}
 }

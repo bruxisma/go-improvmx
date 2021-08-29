@@ -7,12 +7,11 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/stretchr/testify/suite"
-	"occult.work/improvmx/internal"
+	"occult.work/doze/test"
 )
 
 type AliasTestSuite struct {
-	internal.Suite
+	test.Suite
 	session *Session
 }
 
@@ -31,7 +30,7 @@ const createAliasResponse = `
 * parameterized tests at this problem
  */
 func (suite *AliasTestSuite) SetupSuite() {
-	router := internal.NewRouter().
+	router := test.NewRouter().
 		Get(aliasReadPath, suite.FileResponseHandler("testdata/alias/read.json")).
 		Get(aliasLogsPath, suite.FileResponseHandler("testdata/alias/logs.json")).
 		Get(aliasListPath, suite.FileResponseHandler("testdata/alias/list.json")).
@@ -47,13 +46,13 @@ func (suite *AliasTestSuite) SetupSuite() {
 			suite.Require().Equal(request.URL.Path, "/domains/example.com/aliases/richard/")
 			fmt.Fprintf(writer, `{ "success": true }`)
 		})
-	suite.InitializeWithRouter(router)
+	suite.Initialize(router)
 	suite.Data = &testData
 	suite.session = setupSession(suite.Server)
 }
 
 func TestAlias(t *testing.T) {
-	suite.Run(t, new(AliasTestSuite))
+	test.Run(t, new(AliasTestSuite))
 }
 
 func (suite *AliasTestSuite) TestList() {

@@ -10,15 +10,14 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/stretchr/testify/suite"
-	"occult.work/improvmx/internal"
+	"occult.work/doze/test"
 )
 
 //go:embed testdata
 var testData embed.FS
 
 func setupSession(server *httptest.Server) *Session {
-	session, _ := New(os.Getenv("IMPROVMX_API_TOKEN"), WithHostURL(server.URL))
+	session, _ := New(os.Getenv("IMPROVMX_API_TOKEN"), WithBaseURL(server.URL))
 	if session.client.HostURL != server.URL {
 		return nil
 	}
@@ -38,11 +37,11 @@ func badRequest(writer http.ResponseWriter, message string) {
 }
 
 type CommonTestSuite struct {
-	internal.Suite
+	test.Suite
 }
 
 func TestCommon(t *testing.T) {
-	suite.Run(t, new(CommonTestSuite))
+	test.Run(t, new(CommonTestSuite))
 }
 
 // Ensure that this function matches the const path values found in common.go

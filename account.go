@@ -3,10 +3,10 @@ package improvmx
 import (
 	"context"
 
-	"occult.work/improvmx/internal"
+	"occult.work/doze"
 )
 
-type AccountEndpoint internal.Client
+type AccountEndpoint doze.Client
 
 type AccountPlan struct {
 	AliasesLimit int64  `json:"aliases_limit"`
@@ -72,6 +72,6 @@ func (endpoint *AccountEndpoint) Read(ctx context.Context) (*Account, error) {
 	}
 }
 
-func (endpoint *AccountEndpoint) inner() *internal.Client {
-	return (*internal.Client)(endpoint)
+func (endpoint *AccountEndpoint) inner() *doze.Client {
+	return (*doze.Client)(endpoint)
 }

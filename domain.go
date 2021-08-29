@@ -4,10 +4,10 @@ import (
 	"context"
 	"strconv"
 
-	"occult.work/improvmx/internal"
+	"occult.work/doze"
 )
 
-type DomainEndpoint internal.Client
+type DomainEndpoint doze.Client
 
 type Domain struct {
 	Active            bool    `json:"active"`
@@ -171,6 +171,6 @@ func getDomainOption(options ...DomainOption) DomainOption {
 	return options[0]
 }
 
-func (endpoint *DomainEndpoint) inner() *internal.Client {
-	return (*internal.Client)(endpoint)
+func (endpoint *DomainEndpoint) inner() *doze.Client {
+	return (*doze.Client)(endpoint)
 }
