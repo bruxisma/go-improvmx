@@ -2,9 +2,6 @@ package improvmx
 
 import (
 	"embed"
-	"encoding/json"
-	"fmt"
-	"net/http"
 	"net/http/httptest"
 	"os"
 	"regexp"
@@ -24,17 +21,17 @@ func setupSession(server *httptest.Server) *Session {
 	return session
 }
 
-func parseParameters(request *http.Request) (map[string]string, error) {
-	var parameters map[string]string
-	decoder := json.NewDecoder(request.Body)
-	error := decoder.Decode(&parameters)
-	return parameters, error
-}
-
-func badRequest(writer http.ResponseWriter, message string) {
-	writer.WriteHeader(http.StatusBadRequest)
-	fmt.Fprintf(writer, `{ "code": 400, "error": "400 Bad Request %s", "success": false }`, message)
-}
+//func parseParameters(request *http.Request) (map[string]string, error) {
+//	var parameters map[string]string
+//	decoder := json.NewDecoder(request.Body)
+//	error := decoder.Decode(&parameters)
+//	return parameters, error
+//}
+//
+//func badRequest(writer http.ResponseWriter, message string) {
+//	writer.WriteHeader(http.StatusBadRequest)
+//	fmt.Fprintf(writer, `{ "code": 400, "error": "400 Bad Request %s", "success": false }`, message)
+//}
 
 type CommonTestSuite struct {
 	test.Suite
