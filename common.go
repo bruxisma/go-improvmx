@@ -44,7 +44,7 @@ const (
 	credentialsDeletePath = "/domains/{domain}/credentials/{username}"
 
 	domainListPath   = "/domains/"
-	domainCreatePath = "/domains/{domain}/"
+	domainCreatePath = "/domains/"
 	domainReadPath   = "/domains/{domain}/"
 	domainUpdatePath = "/domains/{domain}/"
 	domainDeletePath = "/domains/{domain}/"
