@@ -6,7 +6,6 @@ jobs:
   build:
     name: Build
     runs-on: ${{ matrix.os }}
-    needs: skip
     strategy:
       fail-fast: false
       matrix:
