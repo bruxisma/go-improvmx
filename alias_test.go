@@ -15,17 +15,6 @@ type AliasTestSuite struct {
 	session *Session
 }
 
-const createAliasResponse = `
-	{
-		"alias": {
-			"forward": "{{ .Address }}",
-			"alias": "{{ .Name }}",
-			"id": {{ .ID }}
-		},
-		"success": true
-	}
-`
-
 /* This is all *very* hacky, and we cannot (unfortunately) easily throw
 * parameterized tests at this problem
  */

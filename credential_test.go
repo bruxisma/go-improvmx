@@ -19,6 +19,46 @@ type CredentialTestSuite struct {
 
 func (suite *CredentialTestSuite) SetupSuite() {
 	router := test.NewRouter().
+		Get(credentialsListPath, func(writer http.ResponseWriter, request *http.Request) {
+			suite.Require().Equal(request.URL.Path, "/domains/example.com/credentials/")
+			fmt.Fprintf(writer, `{
+			"credentials": [
+				{
+					"created": 1581604970000,
+					"usage": 0,
+					"username": "richard"
+				},
+				{
+					"created": 1581607028000,
+					"usage": 0,
+					"username": "monica"
+				}
+			],
+			"success": true}`)
+		}).
+		Post(credentialsCreatePath, func(writer http.ResponseWriter, request *http.Request) {
+			suite.Require().Equal(request.URL.Path, "/domains/example.com/credentials/")
+			fmt.Fprintf(writer, `{
+				"credential": {
+					"created": 1588236952000,
+					"usage": 0,
+					"username": "username"
+				},
+				"requires_new_mx_check": false,
+				"success": true
+			}`)
+		}).
+		Put(credentialsUpdatePath, func(writer http.ResponseWriter, request *http.Request) {
+			suite.Require().Equal(request.URL.Path, "/domains/example.com/credentials/username")
+			fmt.Fprintf(writer, `{
+				"credential": {
+					"created": 1588236952000,
+					"usage": 0,
+					"username": "username"
+				},
+				"success": true
+			}`)
+		}).
 		Delete(credentialsDeletePath, func(writer http.ResponseWriter, request *http.Request) {
 			suite.Require().Equal(request.URL.Path, "/domains/example.com/credentials/username")
 			fmt.Fprintf(writer, `{ "success": true }`)
@@ -44,15 +84,27 @@ func TestCredential(t *testing.T) {
 }
 
 func (suite *CredentialTestSuite) TestList() {
-	suite.Skip()
+	credentials, error := suite.session.Credentials.List(context.Background(), "example.com")
+	suite.Require().NoError(error)
+	suite.Require().NotEmpty(credentials)
 }
 
 func (suite *CredentialTestSuite) TestCreate() {
-	suite.Skip()
+	credential, error := suite.session.Credentials.Create(context.Background(), "example.com", User{
+		Password: "password",
+		Username: "username",
+	})
+	suite.Require().NoError(error)
+	suite.Equal(credential.Username, "username")
 }
 
 func (suite *CredentialTestSuite) TestUpdate() {
-	suite.Skip()
+	credential, error := suite.session.Credentials.Update(context.Background(), "example.com", User{
+		Username: "username",
+		Password: "password",
+	})
+	suite.Require().NoError(error)
+	suite.Equal(credential.Username, "username")
 }
 
 func (suite *CredentialTestSuite) TestDelete() {

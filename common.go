@@ -1,7 +1,6 @@
 package improvmx
 
 import (
-	"errors"
 	"fmt"
 
 	"occult.work/doze"
@@ -202,14 +201,14 @@ func (option *ListOption) validate() error {
 	if option.limit != nil {
 		limit := *option.limit
 		if limit < 5 || limit > 100 {
-			return errors.New(fmt.Sprintf("Limit is outside the expected range of [5, 100]: %d", limit))
+			return fmt.Errorf("limit is outside the expected range of [5, 100]: %d", limit)
 		}
 	}
 
 	if option.page != nil {
 		page := *option.page
 		if page < 1 {
-			return errors.New(fmt.Sprintf("Page must be greater than or equal to 1: %d", page))
+			return fmt.Errorf("page must be greater than or equal to 1: %d", page)
 		}
 	}
 

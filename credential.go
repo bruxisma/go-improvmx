@@ -27,11 +27,14 @@ type User struct {
 }
 
 type credentialListResponse struct {
-	credentials []Credential
+	Credentials []Credential
+	Success     bool
 }
 
 type credentialResponse struct {
-	credential Credential
+	Credential         Credential
+	RequiresNewMXCheck bool `json:"requires_new_mx_check"`
+	Success            bool
 }
 
 // Returns a list of SMTP credentials for the given domain.
@@ -46,7 +49,7 @@ func (endpoint *CredentialEndpoint) List(ctx context.Context, domain string) ([]
 	if response, error := request.Get(credentialsListPath); error != nil {
 		return nil, error
 	} else {
-		return response.(*credentialListResponse).credentials, nil
+		return response.(*credentialListResponse).Credentials, nil
 	}
 }
 
@@ -60,7 +63,7 @@ func (endpoint *CredentialEndpoint) Create(ctx context.Context, domain string, u
 	if response, error := request.Post(credentialsCreatePath); error != nil {
 		return nil, error
 	} else {
-		return &(response.(*credentialResponse)).credential, nil
+		return &(response.(*credentialResponse)).Credential, nil
 	}
 }
 
@@ -75,7 +78,7 @@ func (endpoint *CredentialEndpoint) Update(ctx context.Context, domain string, u
 	if response, error := request.Put(credentialsUpdatePath); error != nil {
 		return nil, error
 	} else {
-		return &(response.(*credentialResponse)).credential, nil
+		return &(response.(*credentialResponse)).Credential, nil
 	}
 }
 
