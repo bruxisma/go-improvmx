@@ -48,6 +48,9 @@ func New(token string, options ...SessionOption) (*Session, error) {
 // overriding the Host URL is required.
 func WithClient(client *doze.Client) SessionOption {
 	return func(session *Session) error {
+		if client == nil {
+			return fmt.Errorf("WithClient was passed a nil value")
+		}
 		client.SetError(&Error{}).SetBaseURL(BaseURLv3)
 		session.client = client
 		return nil
