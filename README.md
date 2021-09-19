@@ -1,7 +1,7 @@
 # Overview
 
 [![Go Reference][badge-svg]][badge-link]
-[![Build and Tests][build-svg]][build-link]
+[![Build and Tests][tests-svg]][tests-link]
 [![Code Coverage][codecov-svg]][codecov-link]
 
 `go-improvmx` is a golang wrapper around the [ImprovMX][1] [API][2]. It was
@@ -41,9 +41,9 @@ The following libraries are used for *testing only*
 [4]: https://github.com/go-task/task
 
 [codecov-svg]: https://codecov.io/gh/slurps-mad-rips/go-improvmx/branch/main/graph/badge.svg?token=4ngB0iw6qf
-[build-svg]: https://github.com/slurps-mad-rips/go-improvmx/actions/workflows/build.yml/badge.svg
+[tests-svg]: https://github.com/slurps-mad-rips/go-improvmx/actions/workflows/tests.yml/badge.svg
 [badge-svg]: https://pkg.go.dev/badge/occult.work/improvmx.svg
 
 [codecov-link]: https://codecov.io/gh/slurps-mad-rips/go-improvmx
-[build-link]: https://github.com/slurps-mad-rips/go-improvmx/actions/workflows/build.yml
+[tests-link]: https://github.com/slurps-mad-rips/go-improvmx/actions/workflows/tests.yml
 [badge-link]: https://pkg.go.dev/occult.work/improvmx
