@@ -6,13 +6,6 @@ import (
 	"occult.work/doze"
 )
 
-const (
-	domainsPath = "/domains/"
-	domainPath  = "/domains/{domain}"
-	//BaseURLv3 is the base URL for the improvmx API
-	BaseURLv3 = "https://api.improvmx.com/v3"
-)
-
 type Session struct {
 	client      *doze.Client
 	Credentials *CredentialEndpoint

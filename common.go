@@ -25,6 +25,9 @@ const (
 )
 
 const (
+	//BaseURLv3 is the base URL for the improvmx API
+	BaseURLv3 = "https://api.improvmx.com/v3"
+
 	accountLabelsPath = "/account/whitelabels/"
 	accountReadPath   = "/account/"
 

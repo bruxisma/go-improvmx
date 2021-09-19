@@ -7,12 +7,6 @@ import (
 	"occult.work/doze"
 )
 
-func TestSessionConstruction(t *testing.T) {
-	New("token", WithBaseURL("https://fake-base-url"))
-	New("token", WithUserAgent("Agent"))
-	New("token", WithClient(nil))
-}
-
 func TestSessionWithDebug(test *testing.T) {
 	assert := assert.New(test)
 	session, error := New("token", WithDebug())
