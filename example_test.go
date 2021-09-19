@@ -51,6 +51,9 @@ func Example_credentials() {
 		log.Fatal("SMTP Credentials are a premium account feature")
 	}
 	credentials, error := session.Credentials.List(ctx, "example.com")
+	if error != nil {
+		log.Fatal(error)
+	}
 	for _, credential := range credentials {
 		fmt.Println(credential.Username)
 	}

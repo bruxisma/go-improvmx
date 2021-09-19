@@ -63,7 +63,7 @@ func (endpoint *DomainEndpoint) List(ctx context.Context, options ...*ListOption
 
 	for {
 		request.SetQueryParameter("page", strconv.Itoa(page))
-		if response, error := request.Get(domainsPath); error != nil {
+		if response, error := request.Get(domainListPath); error != nil {
 			return nil, error
 		} else {
 			total := response.(*domainsResponse).Total
