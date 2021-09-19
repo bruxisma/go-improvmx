@@ -17,6 +17,11 @@ type CredentialTestSuite struct {
 	session *Session
 }
 
+type CredentialErrorTestSuite struct {
+	test.Suite
+	session *Session
+}
+
 func (suite *CredentialTestSuite) SetupSuite() {
 	router := test.NewRouter().
 		Get(credentialsListPath, func(writer http.ResponseWriter, request *http.Request) {
@@ -68,6 +73,20 @@ func (suite *CredentialTestSuite) SetupSuite() {
 	suite.session = setupSession(suite.Server)
 }
 
+func (suite *CredentialErrorTestSuite) SetupSuite() {
+	handler := func(writer http.ResponseWriter, request *http.Request) {
+		writer.WriteHeader(420)
+		fmt.Fprintf(writer, `{ "error": "fake error", "code": 420, "success": false }`)
+	}
+	router := test.NewRouter().
+		Post(credentialsCreatePath, handler).
+		Put(credentialsUpdatePath, handler).
+		Get(credentialsListPath, handler)
+	suite.Initialize(router)
+	suite.Data = &testData
+	suite.session = setupSession(suite.Server)
+}
+
 func TestCredentialPaths(t *testing.T) {
 	assert := assert.New(t)
 	fullpath := regexp.MustCompile("/$")
@@ -81,6 +100,7 @@ func TestCredentialPaths(t *testing.T) {
 
 func TestCredential(t *testing.T) {
 	test.Run(t, new(CredentialTestSuite))
+	test.Run(t, new(CredentialErrorTestSuite))
 }
 
 func (suite *CredentialTestSuite) TestList() {
@@ -110,4 +130,28 @@ func (suite *CredentialTestSuite) TestUpdate() {
 func (suite *CredentialTestSuite) TestDelete() {
 	error := suite.session.Credentials.Delete(context.Background(), "example.com", "username")
 	suite.Require().NoError(error)
+}
+
+func (suite *CredentialErrorTestSuite) TestList() {
+	credentials, error := suite.session.Credentials.List(context.Background(), "example.com")
+	suite.Require().Error(error)
+	suite.Require().Empty(credentials)
+}
+
+func (suite *CredentialErrorTestSuite) TestCreate() {
+	credential, error := suite.session.Credentials.Create(context.Background(), "example.com", User{
+		Password: "password",
+		Username: "username",
+	})
+	suite.Require().Error(error)
+	suite.Require().Empty(credential)
+}
+
+func (suite *CredentialErrorTestSuite) TestUpdate() {
+	credential, error := suite.session.Credentials.Update(context.Background(), "example.com", User{
+		Password: "password",
+		Username: "username",
+	})
+	suite.Require().Error(error)
+	suite.Require().Empty(credential)
 }
