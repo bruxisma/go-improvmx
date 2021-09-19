@@ -6,13 +6,6 @@ import (
 	"occult.work/doze"
 )
 
-const (
-	credentialsListPath   = "/domains/{domain}/credentials/"
-	credentialsCreatePath = "/domains/{domain}/credentials/"
-	credentialsUpdatePath = "/domains/{domain}/credentials/{username}"
-	credentialsDeletePath = "/domains/{domain}/credentials/{username}"
-)
-
 type CredentialEndpoint doze.Client
 
 type Credential struct {

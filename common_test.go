@@ -21,18 +21,6 @@ func setupSession(server *httptest.Server) *Session {
 	return session
 }
 
-//func parseParameters(request *http.Request) (map[string]string, error) {
-//	var parameters map[string]string
-//	decoder := json.NewDecoder(request.Body)
-//	error := decoder.Decode(&parameters)
-//	return parameters, error
-//}
-//
-//func badRequest(writer http.ResponseWriter, message string) {
-//	writer.WriteHeader(http.StatusBadRequest)
-//	fmt.Fprintf(writer, `{ "code": 400, "error": "400 Bad Request %s", "success": false }`, message)
-//}
-
 type CommonTestSuite struct {
 	test.Suite
 }
@@ -63,15 +51,18 @@ func (suite *CommonTestSuite) TestPaths() {
 	suite.Regexp(regex, domainLogsPath)
 }
 
-func (suite *CommonTestSuite) TestListOptionSetPage() {
-	invalid := NewListOption().SetPage(-1)
-	valid := NewListOption().SetPage(1)
+func (suite *CommonTestSuite) TestListOptionSetStartsWith() {
+	option := NewListOption().SetStartsWith("test")
+	suite.Require().Equal(option.startsWith, "test")
+}
 
-	invaliderr := invalid.validate()
-	validerr := valid.validate()
-
-	suite.Require().Error(invaliderr)
-	suite.Require().NoError(validerr)
+func (suite *CommonTestSuite) TestListOptionSetIsActive() {
+	yes := NewListOption().SetIsActive(true)
+	no := NewListOption().SetIsActive(false)
+	suite.Require().NotEmpty(yes)
+	suite.Require().NotEmpty(no)
+	suite.Require().Equal(*yes.isActive, 1)
+	suite.Require().Equal(*no.isActive, 0)
 }
 
 func (suite *CommonTestSuite) TestListOptionSetLimit() {
@@ -83,4 +74,35 @@ func (suite *CommonTestSuite) TestListOptionSetLimit() {
 
 	suite.Require().Error(invaliderr)
 	suite.Require().NoError(validerr)
+}
+
+func (suite *CommonTestSuite) TestListOptionSetPage() {
+	invalid := NewListOption().SetPage(-1)
+	valid := NewListOption().SetPage(1)
+
+	invaliderr := invalid.validate()
+	validerr := valid.validate()
+
+	suite.Require().Error(invaliderr)
+	suite.Require().NoError(validerr)
+}
+
+func (suite *CommonTestSuite) TestListOptionClearStartsWith() {
+	option := NewListOption().SetStartsWith("test").ClearStartsWith()
+	suite.Require().Equal(option.startsWith, "")
+}
+
+func (suite *CommonTestSuite) TestListOptionClearIsActive() {
+	option := NewListOption().SetIsActive(true).ClearIsActive()
+	suite.Require().Empty(option.isActive)
+}
+
+func (suite *CommonTestSuite) TestListOptionClearLimit() {
+	option := NewListOption().SetLimit(50).ClearLimit()
+	suite.Require().Empty(option.limit)
+}
+
+func (suite *CommonTestSuite) TestListOptionClearPage() {
+	option := NewListOption().SetPage(-1).ClearPage()
+	suite.Require().Empty(option.page)
 }

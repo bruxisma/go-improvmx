@@ -35,6 +35,11 @@ const (
 	aliasDeletePath = "/domains/{domain}/aliases/{alias}/"
 	aliasLogsPath   = "/domains/{domain}/logs/{alias}/"
 
+	credentialsListPath   = "/domains/{domain}/credentials/"
+	credentialsCreatePath = "/domains/{domain}/credentials/"
+	credentialsUpdatePath = "/domains/{domain}/credentials/{username}"
+	credentialsDeletePath = "/domains/{domain}/credentials/{username}"
+
 	domainListPath   = "/domains/"
 	domainCreatePath = "/domains/{domain}/"
 	domainReadPath   = "/domains/{domain}/"
