@@ -15,10 +15,7 @@ type AccountTestSuite struct {
 	session *Session
 }
 
-type AccountErrorTestSuite struct {
-	test.Suite
-	session *Session
-}
+type AccountErrorTestSuite (AccountTestSuite)
 
 func (suite *AccountTestSuite) SetupSuite() {
 	router := test.NewRouter().

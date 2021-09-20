@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"occult.work/doze/test"
 )
 
@@ -16,6 +17,8 @@ type DomainTestSuite struct {
 	test.Suite
 	session *Session
 }
+
+type DomainErrorTestSuite (DomainTestSuite)
 
 func (suite *DomainTestSuite) SetupSuite() {
 	router := test.NewRouter().
@@ -71,8 +74,35 @@ func (suite *DomainTestSuite) SetupSuite() {
 	suite.session = setupSession(suite.Server)
 }
 
+func (suite *DomainErrorTestSuite) SetupSuite() {
+	handler := func(writer http.ResponseWriter, request *http.Request) {
+		writer.WriteHeader(420)
+		fmt.Fprint(writer, `{ "error": "fake error", code: 420, "success": false }`)
+	}
+	router := test.NewRouter().
+		Get(domainListPath, handler).
+		Get(domainLogsPath, handler).
+		Get(domainReadPath, handler).
+		Post(domainCreatePath, handler).
+		Put(domainUpdatePath, handler)
+	suite.Initialize(router)
+	suite.Data = &testData
+	suite.session = setupSession(suite.Server)
+}
+
 func TestDomain(t *testing.T) {
 	test.Run(t, new(DomainTestSuite))
+	test.Run(t, new(DomainErrorTestSuite))
+}
+
+func TestDomainOption(test *testing.T) {
+	assert := assert.New(test)
+	option := getDomainOption(
+		DomainOption{Label: "1st", Email: "1@example.com"},
+		DomainOption{Label: "2nd", Email: "2@example.com"},
+	)
+	assert.Equal(option.Label, "1st")
+	assert.Equal(option.Email, "1@example.com")
 }
 
 func (suite *DomainTestSuite) TestList() {
@@ -133,4 +163,28 @@ func (suite *DomainTestSuite) TestDelete() {
 func (suite *DomainTestSuite) TestVerify() {
 	error := suite.session.Domains.Verify(context.Background(), "piedpiper.com")
 	suite.Require().NoError(error)
+}
+
+func (suite *DomainErrorTestSuite) TestLogs() {
+	logs, error := suite.session.Domains.Logs(context.Background(), "example.com")
+	suite.Require().Error(error)
+	suite.Require().Empty(logs)
+}
+
+func (suite *DomainErrorTestSuite) TestCreate() {
+	domain, error := suite.session.Domains.Create(context.Background(), "example.com")
+	suite.Require().Error(error)
+	suite.Require().Nil(domain)
+}
+
+func (suite *DomainErrorTestSuite) TestRead() {
+	domain, error := suite.session.Domains.Read(context.Background(), "example.com")
+	suite.Require().Error(error)
+	suite.Require().Nil(domain)
+}
+
+func (suite *DomainErrorTestSuite) TestUpdate() {
+	domain, error := suite.session.Domains.Update(context.Background(), "example.com")
+	suite.Require().Error(error)
+	suite.Require().Nil(domain)
 }
