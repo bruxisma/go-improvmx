@@ -78,6 +78,20 @@ func (suite *AliasTestSuite) TestList() {
 	suite.Require().NotEmpty(aliases)
 }
 
+func (suite *AliasTestSuite) TestListWithInvalidOptions() {
+	options := NewListOption().SetPage(-1)
+	aliases, error := suite.session.Aliases.List(context.Background(), "example.com", options)
+	suite.Require().Error(error)
+	suite.Require().Empty(aliases)
+}
+
+func (suite *AliasTestSuite) TestListWithValidOptions() {
+	options := NewListOption().SetPage(1).SetStartsWith("test").SetIsActive(true)
+	aliases, error := suite.session.Aliases.List(context.Background(), "example.com", options)
+	suite.Require().NoError(error)
+	suite.Require().NotEmpty(aliases)
+}
+
 func (suite *AliasTestSuite) TestLogs() {
 	logs, error := suite.session.Aliases.Logs(context.Background(), "example.com", "richard")
 	suite.Require().NoError(error)
