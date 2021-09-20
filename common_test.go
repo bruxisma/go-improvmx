@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"occult.work/doze/test"
 )
 
@@ -23,6 +24,12 @@ func setupSession(server *httptest.Server) *Session {
 
 type CommonTestSuite struct {
 	test.Suite
+}
+
+func TestError(t *testing.T) {
+	assert := assert.New(t)
+	error := Error{Message: "text", Code: 420}
+	assert.Equal(error.Error(), `420: text`)
 }
 
 func TestCommon(t *testing.T) {
