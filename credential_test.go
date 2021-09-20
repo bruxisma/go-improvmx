@@ -17,10 +17,7 @@ type CredentialTestSuite struct {
 	session *Session
 }
 
-type CredentialErrorTestSuite struct {
-	test.Suite
-	session *Session
-}
+type CredentialErrorTestSuite (CredentialTestSuite)
 
 func (suite *CredentialTestSuite) SetupSuite() {
 	router := test.NewRouter().
