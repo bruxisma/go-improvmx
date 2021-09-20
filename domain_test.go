@@ -171,6 +171,12 @@ func (suite *DomainErrorTestSuite) TestLogs() {
 	suite.Require().Empty(logs)
 }
 
+func (suite *DomainErrorTestSuite) TestList() {
+	domains, error := suite.session.Domains.List(context.Background())
+	suite.Require().Error(error)
+	suite.Require().Empty(domains)
+}
+
 func (suite *DomainErrorTestSuite) TestCreate() {
 	domain, error := suite.session.Domains.Create(context.Background(), "example.com")
 	suite.Require().Error(error)
