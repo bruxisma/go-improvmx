@@ -1,0 +1,29 @@
+{
+  "name": "Go",
+  "image": "golang",
+  "settings": {
+    "[go]": {
+      "editor.insertSpaces": false,
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      },
+      "editor.suggest.snippetsPreventQuickSuggestions": false
+    },
+    "go.toolsManagement.checkForUpdates": "local",
+    "go.useLanguageServer": true,
+    "go.goroot": "/usr/local/go",
+    "go.lintTool": "golangci-lint",
+    "yaml.schemas": {
+      "https://json.schemastore.org/github-workflow": "/.github/workflows/**/*.yml"
+    }
+  },
+  // We add several additional extensions so users can work with every aspect of
+  // the project.
+  "extensions": [
+    "golang.go",
+    "redhat.vscode-yaml",
+    "EditorConfig.EditorConfig",
+    "bierner.github-markdown-preview"
+  ]
+}
