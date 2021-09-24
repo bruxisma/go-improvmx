@@ -23,13 +23,13 @@ type Domain struct {
 type DomainRecord struct {
 }
 
-// Used for creating or updating a domain entry
+// Used for creating or updating a domain entry.
 type DomainOption struct {
 	Email string `json:"notification_email,omitempty"`
 	Label string `json:"whitelabel,omitempty"`
 }
 
-// Returns a slice of domain information for the session
+// Returns a slice of domain information for the session.
 //
 // If multiple *ListOption are passed, only the first one is used.
 //
@@ -163,7 +163,7 @@ func (endpoint *DomainEndpoint) Verify(ctx context.Context, domain string) error
 }
 
 // getDomainOption returns either a default DomainOption *or* the first
-// parameter passed in the variadic arguments
+// parameter passed in the variadic arguments.
 func getDomainOption(options ...DomainOption) DomainOption {
 	if len(options) == 0 {
 		return DomainOption{}
