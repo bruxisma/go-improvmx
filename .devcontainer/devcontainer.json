@@ -21,9 +21,10 @@
   // We add several additional extensions so users can work with every aspect of
   // the project.
   "extensions": [
+    "EditorConfig.EditorConfig",
+    "bierner.github-markdown-preview",
     "golang.go",
     "redhat.vscode-yaml",
-    "EditorConfig.EditorConfig",
-    "bierner.github-markdown-preview"
+    "tamasfe.even-better-toml"
   ]
 }
