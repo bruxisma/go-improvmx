@@ -68,7 +68,7 @@ func WithBaseURL(url string) SessionOption {
 	}
 }
 
-// Enables the debug mode on the Session's internal http client
+// Enables the debug mode on the Session's internal http client.
 func WithDebug() SessionOption {
 	return func(session *Session) error {
 		session.client.SetDebug()

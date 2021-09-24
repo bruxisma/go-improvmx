@@ -7,25 +7,25 @@ import (
 )
 
 const (
-	// The email was accepted to be processed
+	// The email was accepted to be processed.
 	Queued MessageStatus = "QUEUED"
 
-	// The email was refused at the SMTP connection
+	// The email was refused at the SMTP connection.
 	Refused = "REFUSED"
 
-	// The email was successfully delivered to the end destination
+	// The email was successfully delivered to the end destination.
 	Delievered = "DELIVERED"
 
 	// The end destination refused the email temporarily. ImprovMX will try again
-	// multiple times with increased delay between
+	// multiple times with increased delay between.
 	SoftBounce = "SOFT-BOUNCE"
 
-	// The end destination couldn't accept the email definitively
+	// The end destination couldn't accept the email definitively.
 	HardBounce = "HARD-BOUNCE"
 )
 
 const (
-	//BaseURLv3 is the base URL for the improvmx API
+	// BaseURLv3 is the base URL for the improvmx API.
 	BaseURLv3 = "https://api.improvmx.com/v3"
 
 	accountLabelsPath = "/account/whitelabels/"
@@ -148,32 +148,32 @@ func NewListOption() *ListOption {
 	return &ListOption{"", nil, nil, nil}
 }
 
-// Clears the value provided by SetStartsWith
+// Clears the value provided by SetStartsWith.
 func (option *ListOption) ClearStartsWith() *ListOption {
 	option.startsWith = ""
 	return option
 }
 
-// Clears the value provided by SetIsActive
+// Clears the value provided by SetIsActive.
 func (option *ListOption) ClearIsActive() *ListOption {
 	option.isActive = nil
 	return option
 }
 
-// Clears the value provided by SetLimit
+// Clears the value provided by SetLimit.
 func (option *ListOption) ClearLimit() *ListOption {
 	option.limit = nil
 	return option
 }
 
-// Clears the value provided by SetPage
+// Clears the value provided by SetPage.
 func (option *ListOption) ClearPage() *ListOption {
 	option.page = nil
 	return option
 }
 
 // Used to limit searches to domains or aliases that start with the provided
-// string
+// string.
 func (option *ListOption) SetStartsWith(value string) *ListOption {
 	option.startsWith = value
 	return option
@@ -192,14 +192,14 @@ func (option *ListOption) SetIsActive(value bool) *ListOption {
 
 // Number of domains to return. Defaults to 50, must be between 5 and 100.  If
 // this value is set when calling the Alias.List method, the method will fail
-// with an error
+// with an error.
 func (option *ListOption) SetLimit(value int) *ListOption {
 	option.limit = &value
 	return option
 }
 
 // Current page to load. Must be greater or equal to 1, otherwise List methods
-// will fail with an error
+// will fail with an error.
 func (option *ListOption) SetPage(value int) *ListOption {
 	option.page = &value
 	return option

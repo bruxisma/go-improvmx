@@ -8,7 +8,7 @@ import (
 )
 
 // Used to interact with the email alias specific parts of the ImprovMX REST
-// API
+// API.
 type AliasEndpoint doze.Client
 
 type Alias struct {

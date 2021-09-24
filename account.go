@@ -62,7 +62,7 @@ func (endpoint *AccountEndpoint) Labels(ctx context.Context) ([]Whitelabel, erro
 	}
 }
 
-// Returns an instance of the Account
+// Returns an instance of the Account.
 func (endpoint *AccountEndpoint) Read(ctx context.Context) (*Account, error) {
 	request := endpoint.inner().Request(ctx, new(accountResponse))
 	if response, error := request.Get(accountReadPath); error != nil {

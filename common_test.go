@@ -36,7 +36,7 @@ func TestCommon(t *testing.T) {
 	test.Run(t, new(CommonTestSuite))
 }
 
-// Ensure that this function matches the const path values found in common.go
+// Ensure that this function matches the const path values found in common.go.
 func (suite *CommonTestSuite) TestPaths() {
 	regex := regexp.MustCompile("/$")
 	suite.Regexp(regex, accountLabelsPath)

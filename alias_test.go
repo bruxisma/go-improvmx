@@ -18,7 +18,7 @@ type AliasTestSuite struct {
 type AliasErrorTestSuite (AliasTestSuite)
 
 /* This is all *very* hacky, and we cannot (unfortunately) easily throw
-* parameterized tests at this problem
+ * parameterized tests at this problem.
  */
 func (suite *AliasTestSuite) SetupSuite() {
 	router := test.NewRouter().
