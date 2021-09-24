@@ -10,10 +10,10 @@ out of it.
 
 ## Installation
 
-Inside your `go.mod`, add
+Simply use `go get` to add `go-improvmx` to your `go.mod`
 
-```
-require occult.work/improvmx
+```console
+$ go get occult.work/improvmx@v1.0.0
 ```
 
 ## Development
