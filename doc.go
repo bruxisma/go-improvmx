@@ -10,7 +10,7 @@ to wrap the entire API documented https://improvmx.com/api however not all
 features will work across all tiers. At the present time, only the v3 API is
 supported.
 
-Within this documentation, the REST API is refered to the as the ImprovMX REST
+Within this documentation, the REST API is referred to the as the ImprovMX REST
 API, and the golang API is simply called either the golang API or just "the
 API".
 
