@@ -40,10 +40,10 @@ The following libraries are used for *testing only*
 [3]: https://www.terraform.io/
 [4]: https://github.com/go-task/task
 
-[codecov-svg]: https://codecov.io/gh/slurps-mad-rips/go-improvmx/branch/main/graph/badge.svg?token=4ngB0iw6qf
-[tests-svg]: https://github.com/slurps-mad-rips/go-improvmx/actions/workflows/tests.yml/badge.svg
+[codecov-svg]: https://codecov.io/gh/bruxisma/go-improvmx/branch/main/graph/badge.svg?token=4ngB0iw6qf
+[tests-svg]: https://github.com/bruxisma/go-improvmx/actions/workflows/tests.yml/badge.svg
 [badge-svg]: https://pkg.go.dev/badge/occult.work/improvmx.svg
 
-[codecov-link]: https://codecov.io/gh/slurps-mad-rips/go-improvmx
-[tests-link]: https://github.com/slurps-mad-rips/go-improvmx/actions/workflows/tests.yml
+[codecov-link]: https://codecov.io/gh/bruxisma/go-improvmx
+[tests-link]: https://github.com/bruxisma/go-improvmx/actions/workflows/tests.yml
 [badge-link]: https://pkg.go.dev/occult.work/improvmx
