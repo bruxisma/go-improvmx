@@ -88,7 +88,7 @@ jobs:
           -coverprofile coverage.out
           -cover ${{github.workspace}}
       - name: Upload Code Coverage
-        uses: codecov/codecov-action@v2.1.0
+        uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true
           directory: ${{ github.workspace }}
