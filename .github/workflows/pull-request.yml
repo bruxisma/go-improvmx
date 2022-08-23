@@ -33,7 +33,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # tag=v2
       - name: Review Dog - actionlint
-        uses: reviewdog/action-actionlint@v1
+        uses: reviewdog/action-actionlint@f54359bbad3ecf7b660a74e04576e6fc58864861 # tag=v1
   golang:
     name: Lint Golang
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # tag=v2
       - name: Review Dog - golangci-lint
-        uses: reviewdog/action-golangci-lint@v2
+        uses: reviewdog/action-golangci-lint@70498f2d1f75a55ee9a4d719e74e21ed68aebea3 # tag=v2
   test:
     name: Test
     runs-on: ${{ matrix.os }}
