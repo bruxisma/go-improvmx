@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/stretchr/testify v1.8.0
-	occult.work/doze v0.0.0-20220823170054-855867019b0f
+	occult.work/doze v0.0.0-20220919191302-727bb88eb05d
 )
 
 require (
