@@ -52,3 +52,5 @@ occult.work/doze v0.0.0-20220922163519-7339f502c56a h1:6v2Ogx8pASHE/m4L8/MIjQ4w9
 occult.work/doze v0.0.0-20220922163519-7339f502c56a/go.mod h1:SWCvK49JSximuYWuB2hyMJNk43RAJLI/P2eMR1fQHEI=
 occult.work/doze v0.0.0-20220930113751-5bc38be425fc h1:k2n+pMBUwPJhb8sLK/hcQfDIN9hCyRo3xQa02gKdZqk=
 occult.work/doze v0.0.0-20220930113751-5bc38be425fc/go.mod h1:SWCvK49JSximuYWuB2hyMJNk43RAJLI/P2eMR1fQHEI=
+occult.work/doze v0.0.0-20221001160334-cc42f5a56bef h1:Kks42CSG7E69NjiIPfP1krGsx5KwnQqQBtNoOpoAXzc=
+occult.work/doze v0.0.0-20221001160334-cc42f5a56bef/go.mod h1:SWCvK49JSximuYWuB2hyMJNk43RAJLI/P2eMR1fQHEI=
