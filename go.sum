@@ -34,5 +34,5 @@ gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f/go.mod h1:Co6ibVJAznAaIkqp8
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
-occult.work/doze v0.0.0-20221215011654-b76f4f5af796 h1:j6EwhlkXHTqGv9h7lhOiwCm20E6OfRxFxe15qLMZB2Y=
-occult.work/doze v0.0.0-20221215011654-b76f4f5af796/go.mod h1:9lLd5qEiNRymqTqrNVuCVgYfT9Rpw+7MFicthFke9WY=
+occult.work/doze v0.0.0-20221221183359-d202b4fdb977 h1:Jz4b4ovMjLkulrIqr4aExG4l5SfKyHR18GlyPCOvBlI=
+occult.work/doze v0.0.0-20221221183359-d202b4fdb977/go.mod h1:9lLd5qEiNRymqTqrNVuCVgYfT9Rpw+7MFicthFke9WY=
