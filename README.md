@@ -1,3 +1,9 @@
+# Archived
+
+| Date  | Reason |
+| :---: | :----: |
+| 2023-01-06 | No longer primarily using golang, cannot dedicate time to the project |
+
 # Overview
 
 [![Go Reference][badge-svg]][badge-link]
